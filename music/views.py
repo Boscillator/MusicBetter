@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import loader
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the music index.")
+    template = loader.get_template('music/index.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
