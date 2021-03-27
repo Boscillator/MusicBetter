@@ -9,6 +9,6 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def results(request):
-    template = loader.get_template('music/index.html')
+    template = loader.get_template('music/submit.html')
     context = {}
     return HttpResponse(template.render(context, request))

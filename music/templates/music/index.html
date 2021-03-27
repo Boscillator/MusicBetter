@@ -14,7 +14,9 @@
   </head>
   <body>
     <div  class="container">
-        <h1>Welcome to MusicBetter!</h1>
+        <div class="jumbotron bg-info text-white">
+            <h1 class="text-center">Welcome to MusicBetter!</h1>
+        </div>
         <p>To begin, enter a piano piece you have been practicing.</p>
         <form action="{% url 'results' %}" method="post">
             <div class="form-group">
