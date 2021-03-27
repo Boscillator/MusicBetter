@@ -1,12 +1,11 @@
 from django.db import models
 
-# Create your models here.
-class Question(models.Model):
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
+class Song(models.Model):
+    name = models.CharField(max_length=200)
+    difficulty = models.IntegerField(default=0)
+    artist = models.CharField(max_length=200)
 
-
-class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
+class Comp(models.Model):
+    song1 = models.CharField(max_length=200) 
+    song2 = models.CharField(max_length=200)
+    similarity = models.IntegerField(default=0)
