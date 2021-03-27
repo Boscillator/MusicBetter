@@ -7,3 +7,8 @@ def index(request):
     template = loader.get_template('music/index.html')
     context = {}
     return HttpResponse(template.render(context, request))
+
+def results(request):
+    template = loader.get_template('music/index.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
