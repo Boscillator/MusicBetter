@@ -1,5 +1,7 @@
 import pandas as pd
 import sqlite3
+import fetch_midi_links
+import assign_difficulties
 
 con = sqlite3.connect('../db.sqlite3')
 
@@ -18,6 +20,9 @@ meta.rename(columns={
     'tag_mbz': 'genera',
 }, inplace=True)
 meta['difficulty'] = 0
+names, difficulties = fetch_midi_links.get_names_and_difficulties()
+for i,row in meta.iterrows():
+    meta.at[i, 'difficulty'] = assign_difficulties.assign(names, difficulties, row['name'])
 print("\tLocal Insert")
 meta.to_sql('music_song', con, if_exists='replace', index=False)
 print("\tCSV Export")
