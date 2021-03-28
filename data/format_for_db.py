@@ -17,6 +17,7 @@ meta.rename(columns={
     'tag_echo': 'style',
     'tag_mbz': 'genera',
 }, inplace=True)
+meta['difficulty'] = 0
 print("\tLocal Insert")
 meta.to_sql('music_song', con, if_exists='replace', index=False)
 print("\tCSV Export")
