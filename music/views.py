@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from .forms import PieceForm
+from .models import Song, Comp
 
 def index(request):
     if request.method == 'POST':
@@ -26,6 +27,9 @@ def index(request):
         return HttpResponse(template.render(context, request))
 
 def results(request):
+    songlist = Song.objects.all
     template = loader.get_template('music/results.html')
-    context = {}
+    context = {
+        'songlist' : songlist,
+    }
     return HttpResponse(template.render(context, request))
