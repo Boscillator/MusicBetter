@@ -8,6 +8,7 @@ class Song(models.Model):
     genera = models.TextField(null=True)
     style = models.TextField(null=True)
     year = models.IntegerField(null=True)
+    difficulty = models.IntegerField(null=True)
 
     @property
     def normalized_year(self):
