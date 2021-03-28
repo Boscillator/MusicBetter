@@ -8,4 +8,4 @@ class Song(models.Model):
 class Comp(models.Model):
     song1 = models.CharField(max_length=200) 
     song2 = models.CharField(max_length=200)
-    similarity = models.IntegerField(default=0)
+    similarity = models.FloatField(default=0)
