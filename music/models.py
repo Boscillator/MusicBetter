@@ -9,6 +9,12 @@ class Song(models.Model):
     style = models.TextField(null=True)
     year = models.IntegerField(null=True)
 
+    @property
+    def normalized_year(self):
+        if self.year == 0:
+            return None
+        return self.year
+
 class Comp(models.Model):
     song1 = models.ForeignKey(Song, on_delete=models.CASCADE, related_name="matches")
     song2 = models.ForeignKey(Song, on_delete=models.CASCADE)

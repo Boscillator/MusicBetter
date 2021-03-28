@@ -46,7 +46,7 @@ def results(request, song):
     user_song = Song.objects.get(id=song)
     matches = user_song.matches
     matches_filtered = matches.filter(
-        similarity__lte=0.85).order_by('-similarity')
+        similarity__gte=0.85).order_by('-similarity').all()
     context = {
         'song': user_song,
         'matches': matches_filtered
