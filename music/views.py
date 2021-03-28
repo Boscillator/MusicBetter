@@ -22,14 +22,14 @@ def index(request):
             context = {}
             return HttpResponse(template.render(context, request))
     else:
+        songlist = Song.objects.all
         template = loader.get_template('music/index.html')
-        context = {}
+        context = {
+        'songlist' : songlist,
+        }
         return HttpResponse(template.render(context, request))
 
 def results(request):
-    songlist = Song.objects.all
     template = loader.get_template('music/results.html')
-    context = {
-        'songlist' : songlist,
-    }
+    context = {}
     return HttpResponse(template.render(context, request))
