@@ -1,6 +1,7 @@
 from django.db import models
 
 class Song(models.Model):
+    id = models.CharField(max_length=20, unique=True, primary_key=True)
     name = models.CharField(max_length=200)
     difficulty = models.IntegerField(default=0)
     artist = models.CharField(max_length=200)
