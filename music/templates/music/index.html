@@ -11,32 +11,9 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
     $( function() {
-        var availableTags = [
-        "ActionScript",
-        "AppleScript",
-        "Asp",
-        "BASIC",
-        "C",
-        "C++",
-        "Clojure",
-        "COBOL",
-        "ColdFusion",
-        "Erlang",
-        "Fortran",
-        "Groovy",
-        "Haskell",
-        "Java",
-        "JavaScript",
-        "Lisp",
-        "Perl",
-        "PHP",
-        "Python",
-        "Ruby",
-        "Scala",
-        "Scheme"
-        ];
         $( "#tags" ).autocomplete({
-        source: availableTags
+        source: "/search",
+        minLength: 2
         });
     } );
   </script>
@@ -63,7 +40,7 @@
         {% endif %}
         <form class="form-row" action="{% url 'index' %}" method="post">{% csrf_token %}
             <div class="ui-widget form-group col-9">
-                <input type="text" class="form-control text-white text-center" style="background-color:#b22234" id="tags" placeholder="Enter piece name" name="name">
+                <input type="text" class="form-control text-white text-center" style="background-color:#b22234" id="tags" placeholder="Enter piece name" name="piece_name">
             </div>
             <input type="submit" class="btn col-3 text-white form-group" style="background-color:#b22234" value="Submit">
         </form>

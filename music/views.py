@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
+
 
 
 from .forms import PieceForm
@@ -53,3 +54,9 @@ def results(request, song):
     }
 
     return HttpResponse(template.render(context, request))
+
+def search_by_name(request):
+    term = request.GET.get('term')
+    songs = Song.objects.filter(name__startswith=term).all()
+    song_names = [song.name for song in songs]
+    return JsonResponse(song_names, safe=False)
