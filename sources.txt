@@ -1,4 +1,4 @@
 https://docs.djangoproject.com/en/3.1/intro/
 https://getbootstrap.com/docs/4.0/getting-started/introduction/
 https://github.com/pasqLisena/midi-embs
-https://www.w3schools.com/howto/howto_js_filter_dropdown.asp
+https://jqueryui.com/autocomplete/#default
