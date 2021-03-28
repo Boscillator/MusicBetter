@@ -18,7 +18,7 @@ def index(request):
         # check whether it's valid:
         if form.is_valid():
             song_name = form.cleaned_data['piece_name']
-            song = Song.objects.get(name=song_name)
+            song = Song.objects.filter(name=song_name)[:1].get()
             return HttpResponseRedirect(reverse('results', kwargs={'song': song.id}))
         else:
             template = loader.get_template('music/index.html')
