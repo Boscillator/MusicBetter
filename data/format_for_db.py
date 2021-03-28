@@ -23,8 +23,11 @@ print("\tCSV Export")
 meta.to_csv('../raw_data/db/music_song.csv', header=False, index=False)
 
 print("COMP")
+print("\tReset Index")
+similarity.reset_index(inplace=True)
 print("\tRename")
 similarity.rename(columns={
+    'index': 'id',
     0: 'song1_id',
     1: 'song2_id',
     2: 'similarity'
