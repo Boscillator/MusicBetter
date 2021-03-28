@@ -11,21 +11,49 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+import environ
+import io
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Environ
+env_file = os.path.join(BASE_DIR, ".env")
+env = environ.Env()
+
+if os.path.isfile(env_file):
+    env.read_env(env_file)
+
+import google.auth
+from google.cloud import secretmanager
+
+NOT_CLOUD = env("NOT_CLOUD", default=False)
+
+if not NOT_CLOUD:
+    _, project = google.auth.default()
+
+    client = secretmanager.SecretManagerServiceClient()
+
+    SETTINGS_NAME = os.environ.get("SETTINGS_NAME", "django_settings")
+    name = f"projects/{project}/secrets/{SETTINGS_NAME}/versions/latest"
+    payload = client.access_secret_version(name=name).payload.data.decode(
+        "UTF-8"
+    )
+
+    env.read_env(io.StringIO(payload))
+
+SECRET_KEY = "super_dooper_ultra_secret_key_of_doom"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'p=(hnooep@57s!+(+u6!(ou5c4(h(=!^#wml%)ipq#ic@+f*-&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -75,10 +103,7 @@ WSGI_APPLICATION = 'MusicBetter.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': env.db()
 }
 
 

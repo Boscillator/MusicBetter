@@ -4,3 +4,4 @@ raw_data/midi/*
 raw_data/chords/*
 raw_data/pretrained/lmd.bin
 venv
+.env
