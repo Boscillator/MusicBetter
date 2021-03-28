@@ -1,53 +1,80 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
-    $( function() {
-        $( "#tags" ).autocomplete({
-        source: "/search",
-        minLength: 2
+        $(function () {
+            $("#tags").autocomplete({
+                source: "/search",
+                minLength: 2
+            });
         });
-    } );
-  </script>
+    </script>
     <style>
         body {
-            background-color : #3C3B6E;
-            color : white;
+            background-color: #3C3B6E;
+            color: white;
         }
+
         .form-control::placeholder {
-            color : white;
+            color: white;
         }
-        
+
+        .ui-menu {
+            width: 25%;
+            text-align: left;
+            background-color: #b22234;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .ui-menu-item {
+            margin: 5px;
+        }
+
+        .ui-menu-item:hover {
+            background-color: #3C3B6E;
+        }
     </style>
     <title>MusicBetter</title>
-  </head>
-  <body class="text-center">
-    <div  class="container">
+</head>
+
+<body class="text-center">
+    <div class="container">
         <div class="jumbotron" style="background-color:#b22234">
             <h1>Welcome to MusicBetter!</h1>
         </div>
-        <p >Enter the name of a piano piece you've been practicing, and we'll give you suggestions for what to try next!</p>
+        <p>Enter the name of a piano piece you've been practicing, and we'll give you suggestions for what to try next!
+        </p>
         {% if error %}
         <p>Error Submitting</p>
         {% endif %}
         <form class="form-row" action="{% url 'index' %}" method="post">{% csrf_token %}
             <div class="ui-widget form-group col-9">
-                <input type="text" class="form-control text-white text-center" style="background-color:#b22234" id="tags" placeholder="Enter piece name" name="piece_name">
+                <input type="text" class="form-control text-white text-center" style="background-color:#b22234"
+                    id="tags" placeholder="Enter piece name" name="piece_name">
             </div>
-            <input type="submit" class="btn col-3 text-white form-group" style="background-color:#b22234" value="Submit">
+            <input type="submit" class="btn col-3 text-white form-group" style="background-color:#b22234"
+                value="Submit">
         </form>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>
