@@ -9,24 +9,25 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         body {
-            background-color: #3C3B6E;
+            background-color : #3C3B6E;
             color : white;
         }
         .form-control::placeholder {
-            color: white;
+            color : white;
+            
         }
     </style>
     <title>MusicBetter</title>
   </head>
   <body class="text-center">
     <div  class="container">
-        <div class="jumbotron text-white" style="background-color:#b22234">
+        <div class="jumbotron" style="background-color:#b22234">
             <h1>Welcome to MusicBetter!</h1>
         </div>
-        <p >Enter the name of a piano piece you've been practicing, and we'll give you suggestions for what to try next!.</p>
+        <p >Enter the name of a piano piece you've been practicing, and we'll give you suggestions for what to try next!</p>
         <form action="{% url 'index' %}" method="post">
             <div class="form-group">
-                <input type="name" class="form-control" style="background-color:#b22234" id="name" placeholder="Enter piece name" name="name">
+                <input type="name" class="form-control text-white text-center" style="background-color:#b22234" id="name" placeholder="Enter piece name" name="name">
             </div>
             <input type="submit" class="btn btn-primary" value="Submit">
         </form>
