@@ -16,8 +16,9 @@ def index(request):
         form = PieceForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            song = form.cleaned_data['piece_name']
-            return HttpResponseRedirect(reverse('results', kwargs={'song': song}))
+            song_name = form.cleaned_data['piece_name']
+            song = Song.objects.get(name=song_name)
+            return HttpResponseRedirect(reverse('results', kwargs={'song': song.id}))
         else:
             template = loader.get_template('music/index.html')
             context = {
@@ -42,17 +43,13 @@ def results(request, song):
     if request.method != 'GET':
         raise Exception('Should be a GET request')
 
-    queryset = Song.objects.all()  # Need to preload csvs as Song and Comp objects
-    name = song
-    if name is None:
-        raise Exception('name cannot be None')
-    user_song = queryset.get(name=name)
+    user_song = Song.objects.get(id=song)
     matches = user_song.matches
     matches_filtered = matches.filter(
         similarity__lte=0.85).order_by('-similarity')
     context = {
+        'song': user_song,
         'matches': matches_filtered
-        # Gives a list of Comp objects - can then use each one's song2
     }
 
     return HttpResponse(template.render(context, request))
