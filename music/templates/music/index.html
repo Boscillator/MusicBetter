@@ -72,15 +72,15 @@
             <h1>Welcome to MusicBetter!</h1>
         </div>
         <p >Enter the name of a piano piece you've been practicing, and we'll give you suggestions for what to try next!</p>
-        <form class="form-row" action="{% url 'index' %}" method="post">{% csrf_token %}
             {% if error %}
             <p>Error Submitting</p>
             {% endif %}
+        <form class="form-row" action="{% url 'index' %}" method="post">{% csrf_token %}
             <!-- <div class="form-group col-9">
                 <input type="text" class="form-control text-white text-center" style="background-color:#b22234" id="name" placeholder="Enter piece name" name="name">
             </div> -->
             <div class="dropdown form-group col-9">
-                <button onclick="myFunction()" class="dropbtn col-9">Dropdown</button>
+                <button onclick="myFunction()" type="button" class="dropbtn col-9">Dropdown</button>
                 <div id="myDropdown" class="dropdown-content col-9 form-control text-white text-center">
                   <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
                   <a href="#about">About</a>
