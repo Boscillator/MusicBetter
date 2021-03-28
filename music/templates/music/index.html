@@ -25,9 +25,13 @@
         </div>
         <p >Enter the name of a piano piece you've been practicing, and we'll give you suggestions for what to try next!</p>
         <form class="form-row" action="{% url 'index' %}" method="post">{% csrf_token %}
+            {% if error %}
+            <p>Error Submitting</p>
+            {% endif %}
             <div class="form-group col-9">
-                <input type="name" class="form-control text-white text-center" style="background-color:#b22234" id="name" placeholder="Enter piece name" name="name">
+                <input name="piece_name" type="text" class="form-control text-white text-center" style="background-color:#b22234" id="piece_name" placeholder="Enter piece name" name="name">
             </div>
+            
             <input type="submit" class="btn col-3 text-white form-group" style="background-color:#b22234" value="Submit">
         </form>
     </div>
