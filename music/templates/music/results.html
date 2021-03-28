@@ -10,13 +10,33 @@
     <style>
         body {
             background-color : #3C3B6E;
-            color : white;
+            color: white;
         }
     </style>
     <title>MusicBetter</title>
   </head>
-  <body class="text-center">
-    
+  <body class="">
+    <h1 class="display-4" >{{song.name}}</h1>
+    <p class="lead">{{song.album}} &mdash; {{song.artist}} &mdash; {{song.genera}} {% if song.normalized_year %} &mdash; {{ song.year }} {% endif %}</p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Artist</th>
+          <th>similarity</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for match in matches %}
+          <tr>
+            <td>{{match.song2.name}}</td>
+            <td>{{match.song2.artist}}</td>
+            <td>{{match.similarity}}</td>
+          </tr>
+          {% endfor %}
+      </tbody>
+    </table>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
