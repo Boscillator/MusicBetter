@@ -16,7 +16,10 @@ def index(request):
             # ...
             # redirect to a new URL:
             return HttpResponseRedirect('/results/')
-
+        else:
+            template = loader.get_template('music/index.html')
+            context = {}
+            return HttpResponse(template.render(context, request))
     else:
         template = loader.get_template('music/index.html')
         context = {}
