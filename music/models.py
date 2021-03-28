@@ -6,6 +6,6 @@ class Song(models.Model):
     artist = models.CharField(max_length=200)
 
 class Comp(models.Model):
-    song1 = models.CharField(max_length=200) 
-    song2 = models.CharField(max_length=200)
+    song1 = models.ForeignKey(Song, on_delete=models.CASCADE, related_name="matches")
+    song2 = models.ForeignKey(Song, on_delete=models.CASCADE)
     similarity = models.FloatField(default=0)
