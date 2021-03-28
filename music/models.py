@@ -8,6 +8,7 @@ class Song(models.Model):
     genera = models.TextField(null=True)
     style = models.TextField(null=True)
     year = models.IntegerField(null=True)
+    difficulty = models.IntegerField(null=True)
 
 class Comp(models.Model):
     song1 = models.ForeignKey(Song, on_delete=models.CASCADE, related_name="matches")
